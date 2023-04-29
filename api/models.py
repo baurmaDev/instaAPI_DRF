@@ -16,6 +16,7 @@ class UserAccount(models.Model):
     nickname = models.CharField(max_length=30)
     bio = models.CharField(max_length=500)
     phone_number = models.CharField(max_length=20)
+    image_url = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -23,6 +24,7 @@ class UserAccount(models.Model):
 class Post(TimeStampedModel):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     caption = models.CharField(max_length=500)
+    image_url = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return f"{self.user.user.username}'s post"

@@ -8,11 +8,30 @@ from .serializers import UserAccountSerializer, PostSerializer, LoginSerializer,
 
 from .observers import NewPostNotification  # Import the observer class
 
+import requests
+#
+# image_file = open('path/to/image.jpg', 'rb')
+# response = requests.post('http://image-microservice/api/images/', files={'image': image_file})
+# if response.status_code == 201:
+#     image_url = response.json()['url']
 
 class CreateUserAPIView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    # def perform_create(self, serializer):
+    #     # Get the image from the request
+    #     image = self.request.FILES.get('image')
+    #
+    #     # Make a request to the Image microservice to upload the image
+    #     response = requests.post('http://127.0.0.1:8000/images/', files={'image': image})
+    #
+    #     # Get the image URL from the response
+    #     image_url = response.json().get('image_url')
+    #
+    #     # Save the image URL to the user instance
+    #     serializer.save(image_url=image_url)
+
 
 class LoginAPIView(generics.GenericAPIView):
     permission_classes = [AllowAny]
